@@ -68,6 +68,11 @@ app.get("/:id", async (req, res) => {
   res.json(data);
 });
 
+app.get("/", async (req, res) => {
+  const data = await Product.find();
+  res.json(data);
+});
+
 // Delete Product
 app.delete("/:id", async (req, res) => {
   const id = req.params.id;

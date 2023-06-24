@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/648fb5d251a07c193e35de35",
+      "src": "/(.*)",
       "dest": "index.js"
     }
   ]
