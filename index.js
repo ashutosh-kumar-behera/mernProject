@@ -95,24 +95,21 @@ app.get("/search/:key", verifyToken, async (req, res) => {
 });
 
 // verify token
-async function verifyToken(req, res, next){
-  const token =await req.headers["authorization"];
+function verifyToken(req, res, next){
+  let token =req.headers["authorization"];
   if (token) {
-     const authToken = token.split(" ")[1];
-     jwt.verify(authToken, jwtKey, (err, valid) => {
+     token = token.split(" ")[1];
+     jwt.verify(token, jwtKey, (err, valid) => {
        if (err) {
-         res.status(401).json({ result: "Please provide valid token" });
+         res.status(401).send({ result: "Please provide valid token" });
      } else {
        next();
      }
    });
    } else {
-     res.status(403).json({ result: "Please add token with header" });
+     res.status(403).send({ result: "Please add token with header" });
  }
-  next();
 }
-
-
 
 app.listen(8080);
 
