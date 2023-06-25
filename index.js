@@ -53,14 +53,14 @@ app.post("/login", async(req,res)=>{
 
 // Product
 // Insert Product
-app.post("/",verifyToken, async (req, res) => {
+app.post("/", verifyToken, async (req, res) => {
   const data = new Product(req.body);
   let result = await data.save();
   res.json(result);
 });
 
 // Get Product
-app.get("/:id",verifyToken, async (req, res) => {
+app.get("/:id", verifyToken, async (req, res) => {
   const id = req.params.id;
   const data = await Product.find({
     userId: { $all: [id] },
@@ -70,14 +70,14 @@ app.get("/:id",verifyToken, async (req, res) => {
 
 
 // Delete Product
-app.delete("/:id",verifyToken, async (req, res) => {
+app.delete("/:id", verifyToken, async (req, res) => {
   const id = req.params.id;
   const result = await Product.deleteOne({_id:id});
   res.json(result);
 });
 
 // Update Product
-app.put("/:id",verifyToken, async(req, res) => {
+app.put("/:id", verifyToken, async(req, res) => {
   const result = await Product.updateOne({ _id: req.params.id }, { $set: req.body });
   res.json(result);
 });
